@@ -41,14 +41,14 @@ const queryClient = new QueryClient({
 function MyApp({ Component, pageProps }: AppProps) {
   const { push, pathname } = useRouter()
   const validateSession = async () => {
-    const user = supabase.auth.getUser()
+    const user = await supabase.auth.getUser()
     if (user && pathname === '/') {
       push('/dashboard')
     } else if (!user && pathname !== '/') {
       await push('/')
     }
   }
-  
+
   supabase.auth.onAuthStateChange((event, _) => {
     if (event === 'SIGNED_IN' && pathname === '/') {
       push('/dashboard')
@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     validateSession()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
