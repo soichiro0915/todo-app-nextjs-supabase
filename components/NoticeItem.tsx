@@ -20,7 +20,7 @@ export const NoticeItem: VFC<Omit<Notice, 'created_at'>> = ({
         data: { user: user },
       } = await supabase.auth.getUser()
 
-      setUserId(user.id)
+      setUserId(user?.id)
     }
     setUser()
   }, [])

@@ -16,7 +16,7 @@ export const TaskForm: VFC = () => {
       } = await supabase.auth.getUser()
       createTaskMutation.mutate({
         title: editedTask.title,
-        user_id: user.id,
+        user_id: user?.id,
       })
     } else {
       updateTaskMutation.mutate({

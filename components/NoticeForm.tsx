@@ -15,7 +15,7 @@ export const NoticeForm: VFC = () => {
       } = await supabase.auth.getUser()
       createNoticeMutation.mutate({
         content: editedNotice.content,
-        user_id: user.id,
+        user_id: user?.id,
       })
     } else {
       updateNoticeMutation.mutate({
