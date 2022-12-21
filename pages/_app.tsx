@@ -42,9 +42,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { push, pathname } = useRouter()
   const validateSession = async () => {
     const user = await supabase.auth.getUser()
-    if (user && pathname === '/') {
+    if (user.data.user && pathname === '/') {
       push('/dashboard')
-    } else if (!user && pathname !== '/') {
+    } else if (!user.data.user && pathname !== '/') {
       await push('/')
     }
   }
